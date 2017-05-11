@@ -18,7 +18,6 @@ if [ "$(ls -A $NEDI_DIR)" ]; then
     rm -rf /etc/service/sshd && \
     rm -f /etc/my_init.d/00_regen_ssh_host_keys.sh && \
     mv /tmp/build/setup-apache.sh /root && \
-    mv /tmp/build/run.sh /etc/service/apache2/run && \
     mv /tmp/build/ports.conf /etc/apache2/ports.conf && \
     mv /tmp/build/site.conf /etc/apache2/sites-available/site.conf && \
     cp /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/ssl/certs/server.crt && \

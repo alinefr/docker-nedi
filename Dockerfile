@@ -15,3 +15,5 @@ RUN apt-get update && \
         liblwp-useragent-determined-perl libnet-dns-perl libnet-ntp-perl \
         libnet-snmp-perl libnet-telnet-perl librrds-perl libsocket6-perl \
         php5.6-gd php5.6-mcrypt php5.6-mysql php5.6-snmp rrdtool 
+
+CMD /tmp/build/run.sh
