@@ -11,6 +11,7 @@ NEDI_VERSION="1.5C"
 NEDI_DIR="${APACHE_DIR}/nedi"
 
 if [ "$(ls -A $NEDI_DIR)" ]; then
+    mkdir $NEDI_DIR && \
     curl -L -o /tmp/nedi-$NEDI_VERSION.tgz http://www.nedi.ch/pub/nedi-$NEDI_VERSION.tgz && \
     cd /var/www/html/nedi && \
     tar -zx -f /tmp/nedi-$NEDI_VERSION.tgz && \
