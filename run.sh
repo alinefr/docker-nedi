@@ -6,6 +6,32 @@ export LANG=C
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export TZ=America/New_York
 
+APACHE_DIR="/var/www/html"
+NEDI_VERSION="1.5C"
+NEDI_DIR="${APACHE_DIR}/nedi"
+
+if [ "$(ls -A $NEDI_DIR)" ]; then
+    curl -L -o /tmp/nedi-$NEDI_VERSION.tgz http://www.nedi.ch/pub/nedi-$NEDI_VERSION.tgz && \
+    cd /var/www/html/nedi && \
+    tar -zx -f /tmp/nedi-$NEDI_VERSION.tgz && \
+    mkdir -p /etc/service/apache2/supervise && \
+    rm -rf /etc/service/sshd && \
+    rm -f /etc/my_init.d/00_regen_ssh_host_keys.sh && \
+    mv /tmp/build/setup-apache.sh /root && \
+    mv /tmp/build/run.sh /etc/service/apache2/run && \
+    mv /tmp/build/ports.conf /etc/apache2/ports.conf && \
+    mv /tmp/build/site.conf /etc/apache2/sites-available/site.conf && \
+    cp /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/ssl/certs/server.crt && \
+    cp /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/ssl/certs/ca-bundle.crt && \
+    cp /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/private/server.key && \
+    /root/setup-apache.sh && \
+    apt-get -yq autoremove && \
+    apt-get -yq clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/* && \
+    rm -rf /var/tmp/*
+fi
+
 # set httpd port
 if [ -z "$HTTPD_PORT" ] ; then
     export HTTPD_PORT=80
