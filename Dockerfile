@@ -36,4 +36,3 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/* && \
     rm -rf /var/tmp/*
-VOLUME /nedi
