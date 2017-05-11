@@ -16,9 +16,9 @@ RUN apt-get update && \
         liblwp-useragent-determined-perl libnet-dns-perl libnet-ntp-perl \
         libnet-snmp-perl libnet-telnet-perl librrds-perl libsocket6-perl \
         php5.6-gd php5.6-mcrypt php5.6-mysql php5.6-snmp rrdtool && \
-    mkdir /nedi && \
+    mkdir -p /var/www/nedi && \
     curl -L -o /tmp/nedi-$NEDI_VERSION.tgz http://www.nedi.ch/pub/nedi-$NEDI_VERSION.tgz && \
-    cd /nedi && \
+    cd /var/www/nedi && \
     tar -zx -f /tmp/nedi-$NEDI_VERSION.tgz && \
     mkdir -p /etc/service/apache2/supervise && \
     rm -rf /etc/service/sshd && \
